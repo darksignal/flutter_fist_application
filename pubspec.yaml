@@ -20,7 +20,7 @@ version: 0.0.1+1
 
 environment:
 #--DRG--sdk: '>=2.19.6 <3.0.0'
-sdk: '>=2.19.4 <4.0.0'
+  sdk: '>=2.19.4 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
