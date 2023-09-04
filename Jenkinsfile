@@ -18,7 +18,7 @@ pipeline {
                 git credentialsId: 'github-sshkey', url: 'https://github.com/darksignal/flutter_fist_application.git'
             }
         }
-/*
+
         stage('Install Dependencies') {
             steps {
                 // Install Flutter dependencies
@@ -31,7 +31,7 @@ pipeline {
                 '''
             }
         }
-
+/*
         stage('Build Web App') {
             steps {
                 // Build Flutter web app
@@ -113,7 +113,7 @@ pipeline {
                 }
             }
         }
-  */  
+ */   
     }
 
     post {
