@@ -22,14 +22,14 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install Flutter dependencies
-                /*sh '''
+                sh '''
                     curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.6-stable.tar.xz
                     tar xf flutter.tar.xz -C /usr/local
                     export PATH="$PATH:$FLUTTER_HOME/bin"
                     flutter --version
                     flutter pub get
-                '''*/
-                sh 'flutter --version'
+                '''
+                //sh 'flutter --version'
                 //sh 'sudo snap install flutter --classic'
             }
         }
