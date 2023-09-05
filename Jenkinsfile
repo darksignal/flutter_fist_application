@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< HEAD
     agent any
 
     environment {
@@ -141,15 +140,3 @@ pipeline {
         }
     }
 }
-=======
-  agent any
-  stages {
-    stage('Checkout') {
-      steps {
-        sleep 10
-      }
-    }
-
-  }
-}
->>>>>>> 80203dcedde07ac1fb7e9eacd1343c120beb70df
