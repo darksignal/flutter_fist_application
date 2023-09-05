@@ -36,6 +36,8 @@ pipeline {
 */
         stage('Build Web App') {
             steps {
+                sh 'flutter pub get'
+                sh 'flutter clean'
                 // Build Flutter web app
                 sh "flutter build web --web-renderer canvaskit --release"
             }
