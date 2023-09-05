@@ -18,7 +18,7 @@ pipeline {
                 git credentialsId: 'Github-Token-Classic', url: 'https://github.com/darksignal/flutter_fist_application.git'
             }
         }
-
+/*
         stage('Install Dependencies') {
             steps {
                 // Install Flutter dependencies
@@ -33,7 +33,7 @@ pipeline {
                 //sh 'sudo snap install flutter --classic'
             }
         }
-
+*/
         stage('Build Web App') {
             steps {
                 // Build Flutter web app
