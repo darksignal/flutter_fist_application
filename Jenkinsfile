@@ -37,7 +37,7 @@ pipeline {
         stage('Build Web App') {
             steps {
                 // Build Flutter web app
-                sh "flutter build web"
+                sh "flutter build web --web-renderer canvaskit --release"
             }
         }
 /*
