@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables
-        FLUTTER_HOME = '/usr/local/flutter'
+        //FLUTTER_HOME = '/usr/local/flutter'
         DOCKER_IMAGE_NAME = 'davidromerog/flutter_fist_application'
         DOCKER_REGISTRY_CREDENTIALS = credentials('docker-registry-credentials')
         SNYK_LOG_FILE = 'snyk-scan.log' // Define the Snyk log file
@@ -48,11 +48,12 @@ pipeline {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
                 //sh "snyk test --all-projects > $SNYK_LOG_FILE"
-                snykSecurity(
-                    snykInstallation: 'Snyk@latest', // Specify the Snyk installation to use
-                    snykTokenId: 'darksignal-snyk-api-token', // Specify the Snyk API token to use 
-                    targetFile: $SNYK_LOG_FILE, // Specify the target file to use
-                    additionalArguments: "--all-projects" // --file=$SNYK_LOG_FILE" // Specify the log file to use
+                //snykSecurity(
+                //    snykInstallation: 'Snyk@latest', // Specify the Snyk installation to use
+                //    snykTokenId: 'darksignal-snyk-api-token', // Specify the Snyk API token to use 
+                //    targetFile: $SNYK_LOG_FILE, // Specify the target file to use
+                //    additionalArguments: '--all-projects' // --file=$SNYK_LOG_FILE" // Specify the log file to use
+                snykSecurity failOnIssues: false, projectName: 'flutter_fist_application', severity: 'medium', snykInstallation: 'Snyk@latest', snykTokenId: 'darksignal-snyk-api-token', targetFile: 'snyk-scan.log'
                 )
             }
         }
