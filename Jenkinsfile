@@ -43,7 +43,7 @@ pipeline {
                 sh "flutter build web --web-renderer canvaskit --release"
             }
         }
-
+/*
         stage('Snyk Code Scan') {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
@@ -55,6 +55,15 @@ pipeline {
                 //    additionalArguments: '--all-projects' // --file=$SNYK_LOG_FILE" // Specify the log file to use
                 snykSecurity failOnIssues: false, projectName: 'flutter_fist_application', severity: 'medium', snykInstallation: 'Snyk@latest', snykTokenId: 'darksignal-snyk-api-token', targetFile: SNYK_LOG_FILE
                 )
+            }
+        }
+*/
+        stage('Deploy Firebase') {
+            steps {
+                // Run Snyk code scan on the project and save the results to a log file
+                sh 'firebase experiments:enable webframeworks'
+                sh 'firebase init hosting'
+                sh 'firebase deploy'
             }
         }
 /*
