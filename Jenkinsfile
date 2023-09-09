@@ -53,7 +53,7 @@ pipeline {
                 //    snykTokenId: 'darksignal-snyk-api-token', // Specify the Snyk API token to use 
                 //    targetFile: $SNYK_LOG_FILE, // Specify the target file to use
                 //    additionalArguments: '--all-projects' // --file=$SNYK_LOG_FILE" // Specify the log file to use
-                snykSecurity failOnIssues: false, projectName: 'flutter_fist_application', severity: 'medium', snykInstallation: 'Snyk@latest', snykTokenId: 'darksignal-snyk-api-token', targetFile: 'snyk-scan.log'
+                snykSecurity failOnIssues: false, projectName: 'flutter_fist_application', severity: 'medium', snykInstallation: 'Snyk@latest', snykTokenId: 'darksignal-snyk-api-token', targetFile: SNYK_LOG_FILE
                 )
             }
         }
@@ -129,7 +129,7 @@ pipeline {
                 subject: "CI/CD Pipeline Failed: ${currentBuild.fullDisplayName}",
                 body: "The CI/CD pipeline for your Flutter web app has failed. Please investigate.\n\nPipeline URL: ${currentBuild.absoluteUrl}",
                 to: 'davidromerog@gmail.com',
-                replyTo: 'jenkins@example.com',
+                replyTo: 'hola@grantigris.com',
                 attachLog: true, // Attach the Snyk log file to the email
                 attachmentsPattern: '$SNYK_LOG_FILE' // Specify the log file to attach
             )
@@ -140,7 +140,7 @@ pipeline {
                 subject: "CI/CD Pipeline Succeeded: ${currentBuild.fullDisplayName}",
                 body: "The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\n\nPipeline URL: ${currentBuild.absoluteUrl}",
                 to: 'davidromerog@gmail.com',
-                replyTo: 'jenkins@example.com'
+                replyTo: 'hola@grantigris.com'
             )
         }
     }
