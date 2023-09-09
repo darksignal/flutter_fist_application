@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Color.fromARGB(255, 223, 70, 159)),
         ),
         home: MyHomePage(),
       ),
@@ -96,7 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth < 550) { //In the example was 450
+          if (constraints.maxWidth < 550) {
+            //In the example was 450
             // Use a more mobile-friendly layout with BottomNavigationBar
             // on narrow screens.
             return Column(
