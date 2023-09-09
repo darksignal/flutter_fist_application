@@ -18,31 +18,32 @@ pipeline {
                 git credentialsId: 'Github-Token-Classic', url: 'https://github.com/darksignal/flutter_fist_application.git'
             }
         }
-/*
+
         stage('Install Dependencies') {
             steps {
                 // Install Flutter dependencies
-                sh '''
-                    curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.6-stable.tar.xz
-                    tar xf flutter.tar.xz -C /usr/local
-                    export PATH="$PATH:$FLUTTER_HOME/bin"
-                    flutter --version
-                    flutter pub get
-                '''
-                //sh 'flutter --version'
+                //sh '''
+                //    curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.6-stable.tar.xz
+                //    tar xf flutter.tar.xz -C /usr/local
+                //    export PATH="$PATH:$FLUTTER_HOME/bin"
+                //    flutter --version
+                //    flutter pub get
+                //'''
+                sh 'flutter --version'
+                sh 'flutter doctor'
                 //sh 'sudo snap install flutter --classic'
-            }
-        }
-*/
-        stage('Build Web App') {
-            steps {
                 sh 'flutter pub get'
                 sh 'flutter clean'
+            }
+        }
+
+        stage('Build Web App') {
+            steps {
                 // Build Flutter web app
                 sh "flutter build web --web-renderer canvaskit --release"
             }
         }
-/*
+
         stage('Snyk Code Scan') {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
@@ -55,7 +56,7 @@ pipeline {
                 )
             }
         }
-
+/*
         stage('Build Docker Image') {
             steps {
                 // Build Docker image
