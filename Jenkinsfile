@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'dev'}
 
     environment {
         // Define environment variables
@@ -62,7 +62,7 @@ pipeline {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
                 sh 'firebase experiments:enable webframeworks'
-                sh 'firebase init hosting'
+                //sh 'firebase init hosting'
                 sh 'firebase deploy'
             }
         }
