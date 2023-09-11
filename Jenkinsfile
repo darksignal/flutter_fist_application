@@ -29,18 +29,18 @@ pipeline {
                 //    flutter --version
                 //    flutter pub get
                 //'''
-                sh 'flutter --version'
-                sh 'flutter doctor'
+                bat 'flutter --version'
+                bat 'flutter doctor'
                 //sh 'sudo snap install flutter --classic'
-                sh 'flutter pub get'
-                sh 'flutter clean'
+                bat 'flutter pub get'
+                bat 'flutter clean'
             }
         }
 
         stage('Build Web App') {
             steps {
                 // Build Flutter web app
-                sh "flutter build web --web-renderer canvaskit --release"
+                bat "flutter build web --web-renderer canvaskit --release"
             }
         }
 /*
@@ -61,9 +61,9 @@ pipeline {
         stage('Deploy Firebase') {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
-                sh 'firebase experiments:enable webframeworks'
+                bat 'firebase experiments:enable webframeworks'
                 //sh 'firebase init hosting'
-                sh 'firebase deploy'
+                bat 'firebase deploy'
             }
         }
 /*
