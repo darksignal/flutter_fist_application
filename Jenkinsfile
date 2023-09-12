@@ -31,7 +31,7 @@ pipeline {
                 // Run Flutter web app tests
                 //bat "flutter test test/widget_test.dart"
                 //Snyk code scan on the project and save the results to a log file
-                snykSecurity (
+                /*snykSecurity (
                     failOnError: false, 
                     failOnIssues: false, 
                     organisation: 'darksignal', 
@@ -39,7 +39,7 @@ pipeline {
                     severity: 'medium', 
                     snykInstallation: 'Snyk@latest', 
                     snykTokenId: 'darksignal-snyk-api-token'
-                )
+                )*/
                 bat 'snyk test --severity-threshold=high --json > snyk-results.json'
             }
         }
