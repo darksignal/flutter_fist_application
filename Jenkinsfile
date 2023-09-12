@@ -1,6 +1,12 @@
 pipeline {
     agent {label 'dev'}
 
+    environment {
+        // Define environment variables
+        SNYK_TOKEN = credentials('darksignal-snyk-api-token')
+        SNYK_OUTPUT_FILE_PATH = 'snyk-results.json'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -40,7 +46,9 @@ pipeline {
                     snykInstallation: 'Snyk@latest', 
                     snykTokenId: 'darksignal-snyk-api-token'
                 )*/
-                bat 'snyk test --severity-threshold=high --json > snyk-results.json'
+                bat 'snyk auth $SNYK_TOKEN'
+                bat 'snyk code test --severity-threshold=high --json-file-output=$SNYK_OUTPUT_FILE_PATH'
+                bat 'snyk test --severity-threshold=high --json'
             }
         }
 /*
@@ -60,7 +68,14 @@ pipeline {
             // Handle failure (e.g., send notifications)
             slackSend (
                 channel: '#jenkins', 
-                message: 'The CI/CD pipeline for your Flutter web app has failed. Please investigate.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}'
+                message: "The CI/CD pipeline for your Flutter web app has failed. Please investigate.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}",
+                color: 'danger'
+            )
+            //Attach file to slack message
+            slackUploadFile (
+                channel: '#jenkins', 
+                file: SNYK_OUTPUT_FILE_PATH, 
+                initialComment: 'Snyk scan results for the CI/CD pipeline for your Flutter web app.'
             )
         }
         success {
@@ -71,7 +86,13 @@ pipeline {
                 cc: '', 
                 from: '', 
                 replyTo: '', 
-                subject: 'CI/CD Pipeline Succeeded: ${currentBuild.fullDisplayName}', to: 'davidromerog@gmail.com'
+                subject: 'CI/CD Pipeline Succeeded: ${currentBuild.fullDisplayName}', 
+                to: 'davidromerog@gmail.com'
+            )
+        slackSend (
+                channel: '#jenkins', 
+                message: "The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}"
+                color: 'good'
             )
         }
     }
