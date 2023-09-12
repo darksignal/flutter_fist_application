@@ -38,7 +38,7 @@ pipeline {
                 bat 'snyk code test --severity-threshold=high --json-file-output=$SNYK_OUTPUT_FILE_PATH'
             }
         }
-/*
+
         stage('Deploy Firebase') {
             steps {
                 // Run Snyk code scan on the project and save the results to a log file
@@ -47,7 +47,7 @@ pipeline {
                 bat 'firebase deploy'
             }
         }
-*/ 
+
     }
 
     post {
