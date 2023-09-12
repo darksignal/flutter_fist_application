@@ -67,15 +67,6 @@ pipeline {
         }
         success {
             // Handle success (e.g., send notifications)
-            mail (
-                bcc: '', 
-                body: 'The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}', 
-                cc: '', 
-                from: '', 
-                replyTo: '', 
-                subject: 'CI/CD Pipeline Succeeded: ${currentBuild.fullDisplayName}', 
-                to: 'davidromerog@gmail.com'
-            )
             slackSend (
                 channel: '#jenkins', 
                 message: "The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}",
