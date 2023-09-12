@@ -89,9 +89,9 @@ pipeline {
                 subject: 'CI/CD Pipeline Succeeded: ${currentBuild.fullDisplayName}', 
                 to: 'davidromerog@gmail.com'
             )
-        slackSend (
+            slackSend (
                 channel: '#jenkins', 
-                message: "The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}"
+                message: "The CI/CD pipeline for your Flutter web app has succeeded. Deployment is complete.\\n\\nPipeline URL: ${currentBuild.absoluteUrl}",
                 color: 'good'
             )
         }
