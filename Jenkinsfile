@@ -74,7 +74,7 @@ pipeline {
             //Attach file to slack message
             slackUploadFile (
                 channel: '#jenkins', 
-                file: SNYK_OUTPUT_FILE_PATH, 
+                filePath: SNYK_OUTPUT_FILE_PATH, 
                 initialComment: 'Snyk scan results for the CI/CD pipeline for your Flutter web app.'
             )
         }
