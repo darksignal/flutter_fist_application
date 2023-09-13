@@ -48,6 +48,13 @@ pipeline {
             }
         }
 
+        stage('Create Docker image'){
+            steps{
+                // Create the container******* NOT TESTED!!!! *********
+                bat 'docker build . -t flutter_first_docker'
+            }
+        }
+
     }
 
     post {
